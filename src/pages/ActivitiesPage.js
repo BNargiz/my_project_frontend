@@ -20,6 +20,7 @@ export default function Activities() {
           date={a.date}
           imageUrl={a.imageUrl}
           ageRange={a.ageRange}
+          id={a.id}
         />
       ))}
     </div>

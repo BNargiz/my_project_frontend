@@ -1,6 +1,7 @@
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdDateRange } from "react-icons/md";
 import { GiAges } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Activity = (props) => {
   return (
@@ -29,7 +30,9 @@ const Activity = (props) => {
         <GiAges />
         {props.ageRange}
       </p>
-      <button>Read More</button>
+      <Link to={`/activities/${props.id}`}>
+        <button>Read More</button>
+      </Link>
     </div>
   );
 };
