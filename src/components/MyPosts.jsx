@@ -1,7 +1,10 @@
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdDateRange } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { deleteOneActivity } from "../store/user/actions";
 
 const MyPosts = (props) => {
+  const dispatch = useDispatch();
   return (
     <div
       style={{
@@ -25,8 +28,10 @@ const MyPosts = (props) => {
         {props.date}
       </p>
       <div style={{ display: "flex", gap: 80 }}>
-        <button>delete</button>
-        <button>modify</button>
+        <button onClick={() => dispatch(deleteOneActivity(props.id))}>
+          Delete post
+        </button>
+        <button>Modify post</button>
       </div>
     </div>
   );

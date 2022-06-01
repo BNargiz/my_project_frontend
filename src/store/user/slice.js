@@ -22,9 +22,16 @@ export const userSlice = createSlice({
     tokenStillValid: (state, action) => {
       state.profile = action.payload.user;
     },
+    deleteActivity: (state, action) => {
+      const activityId = action.payload.activityId;
+      state.profile.activities = state.profile.activities.filter(
+        (a) => a.id !== activityId
+      );
+    },
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid } = userSlice.actions;
+export const { loginSuccess, logOut, tokenStillValid, deleteActivity } =
+  userSlice.actions;
 
 export default userSlice.reducer;

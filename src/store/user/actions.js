@@ -3,7 +3,7 @@ import axios from "axios";
 import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
-import { loginSuccess, logOut, tokenStillValid } from "./slice";
+import { deleteActivity, loginSuccess, logOut, tokenStillValid } from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -115,4 +115,17 @@ export const getUserWithStoredToken = () => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+export const deleteOneActivity = (id) => async (dispatch, getState) => {
+  const token = getState().user.token;
+  try {
+    const response = await axios.delete(`${apiUrl}/activities/delete/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log("deleted activity", response.data);
+    dispatch(deleteActivity({ activityId: id }));
+  } catch (e) {
+    console.log(e.message);
+  }
 };

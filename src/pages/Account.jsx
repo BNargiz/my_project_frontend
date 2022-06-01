@@ -16,6 +16,7 @@ export default function Account() {
       {userActivities.map((a) => (
         <MyPosts
           key={a.id}
+          id={a.id}
           title={a.title}
           imageUrl={a.imageUrl}
           location={a.location}
