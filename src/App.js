@@ -13,6 +13,8 @@ import Activities from "./pages/ActivitiesPage";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
+import ActivitiesDetailPage from "./pages/ActivityDetailPage";
+import Account from "./pages/Account";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +32,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/activities" element={<Activities />} />
+        <Route path="/activities/:id" element={<ActivitiesDetailPage />} />
+        <Route path="/user" element={<Account />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>

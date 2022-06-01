@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   activities: [],
-
+  activitydetail: null,
   loading: true,
 };
 
@@ -16,8 +16,13 @@ const activitySlice = createSlice({
       state.activities = action.payload;
       state.loading = false;
     },
+    activityFetched: (state, action) => {
+      state.activitydetail = action.payload;
+      state.loading = false;
+    },
   },
 });
 
-export const { activitiesFullyFetched, startLoading } = activitySlice.actions;
+export const { activitiesFullyFetched, startLoading, activityFetched } =
+  activitySlice.actions;
 export default activitySlice.reducer;
