@@ -12,12 +12,12 @@ const Map = () => {
         borderRadius: "10px",
         height: "50vw",
         width: "60vw",
-        maxWidth: "700px",
-        maxHeight: "500px",
-        margin: "0px 19.5%",
+        maxWidth: "500px",
+        maxHeight: "350px",
+        padding: "0px 3.5%",
       }}
       center={[52.36994, 4.906]}
-      zoom={13}
+      zoom={9}
       scrollWheelZoom={true}
     >
       <TileLayer
