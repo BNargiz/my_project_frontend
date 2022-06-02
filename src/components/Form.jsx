@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import moment from "moment";
+import { newActivityCreated } from "../store/activity/action";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -10,8 +12,13 @@ const Form = () => {
   const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [date, setDate] = useState(Date.now());
+  const today = moment().format("YYYY-MM-DD");
+  const [date, setDate] = useState(today);
   const [age, setAge] = useState("");
+  const [longitude, setLongitude] = useState(0);
+  const [latitude, setLatitude] = useState(0);
+
+  //   console.log(moment().format("YYYY-MM-DD"));
   //
   // const dispatch = useDispatch();
   const submit = (event) => {
@@ -21,6 +28,8 @@ const Form = () => {
       title,
       description,
       location,
+      longitude,
+      latitude,
       price,
       image,
       email,
@@ -29,7 +38,7 @@ const Form = () => {
       age,
     };
 
-    // dispatch(newStoryCreated(newStory));
+    dispatch(newActivityCreated(newActivity));
     setTitle("");
     setDescription("");
     setLocation("");
@@ -37,8 +46,10 @@ const Form = () => {
     setImage("");
     setEmail("");
     setPhone("");
-    setDate(Date.now());
+    setDate(today);
     setAge("");
+    setLatitude(0);
+    setLongitude(0);
   };
 
   return (
@@ -73,6 +84,26 @@ const Form = () => {
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
+            />
+          </label>
+        </p>
+        <p>
+          <label>
+            Longitude:{" "}
+            <input
+              type="number"
+              value={longitude}
+              onChange={(e) => setLongitude(e.target.value)}
+            />
+          </label>
+        </p>
+        <p>
+          <label>
+            Latitude:{" "}
+            <input
+              type="number"
+              value={latitude}
+              onChange={(e) => setLatitude(e.target.value)}
             />
           </label>
         </p>
@@ -125,6 +156,7 @@ const Form = () => {
             <input
               type="date"
               value={date}
+              min={today}
               onChange={(e) => setDate(e.target.value)}
             />
           </label>
