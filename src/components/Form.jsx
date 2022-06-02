@@ -9,7 +9,7 @@ const Form = () => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const today = moment().format("YYYY-MM-DD");
@@ -43,13 +43,34 @@ const Form = () => {
     setDescription("");
     setLocation("");
     setPrice(0);
-    setImage("");
+    setImage();
     setEmail("");
     setPhone("");
     setDate(today);
     setAge("");
     setLatitude(0);
     setLongitude(0);
+  };
+
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    //first parameter is always upload_preset, second is the name of the preset
+    data.append("upload_preset", "tnvu24xd");
+
+    //post request to Cloudinary, remember to change to your own link
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dgaoprtww/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+
+    const file = await res.json();
+    console.log("file", file); //check if you are getting the url back
+    setImage(file.url); //put the url in local state, next step you can send it to the backend
   };
 
   return (
@@ -119,15 +140,23 @@ const Form = () => {
         </p>
         <p>
           <label>
-            Image:{" "}
-            <input
-              type="text"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            />
+            Image: <input type="file" onChange={uploadImage} />
           </label>
           <div>
-            <img src={image} style={{ maxWidth: 200 }} />
+            <img
+              alt="img"
+              src={
+                image
+                  ? image
+                  : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+              }
+              style={{ maxWidth: 100 }}
+            />
+            {image ? (
+              <div style={{ fontSize: 20 }}>Succesfully uploaded!</div>
+            ) : (
+              ""
+            )}
           </div>
         </p>
         <p>
@@ -169,11 +198,11 @@ const Form = () => {
                 setAge(e.target.value);
               }}
             >
-              <option value={age}> </option>
-              <option value={"infant"}>Infant</option>
-              <option value={"pre-schooler"}>Pre-schooler</option>
-              <option value={"school-age"}>School age</option>
-              <option value={"all-ages"}>All ages</option>
+              <option value=""> </option>
+              <option value="infant">Infant</option>
+              <option value="pre-schooler">Pre-schooler</option>
+              <option value="school-age">School age</option>
+              <option value="all-ages">All ages</option>
             </select>
           </label>
         </p>
