@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchActivities } from "../store/activity/action";
 import { selectActivities } from "../store/activity/selector";
 import Activity from "../components/Activity";
-
+import Map from "../components/Map";
 export default function Activities() {
   const dispatch = useDispatch();
   const activities = useSelector(selectActivities);
@@ -23,6 +23,7 @@ export default function Activities() {
           id={a.id}
         />
       ))}
+      <Map />
     </div>
   );
 }
