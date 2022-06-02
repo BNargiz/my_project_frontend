@@ -125,6 +125,14 @@ export const deleteOneActivity = (id) => async (dispatch, getState) => {
     });
     console.log("deleted activity", response.data);
     dispatch(deleteActivity({ activityId: id }));
+    dispatch(
+      showMessageWithTimeout(
+        "success",
+        false,
+        "Your post has been deleted!",
+        1500
+      )
+    );
   } catch (e) {
     console.log(e.message);
   }
