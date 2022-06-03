@@ -14,10 +14,16 @@ export default function Account() {
     navigate("/");
   }
   const [formOpen, setFormOpen] = useState(false);
+
+  const closeForm = () => {
+    console.log("t");
+    setFormOpen(false);
+  };
+
   return userActivities !== null ? (
     <div>
       <button onClick={() => setFormOpen(!formOpen)}>Post an activity</button>
-      {formOpen && <Form />}
+      {formOpen && <Form closeForm={closeForm} />}
       {userActivities.map((a) => (
         <MyPosts
           key={a.id}

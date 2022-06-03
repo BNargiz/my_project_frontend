@@ -9,11 +9,14 @@ export default function Activities() {
   const dispatch = useDispatch();
   const activities = useSelector(selectActivities);
   const [getInputText, setInputText] = useState("");
+  const [age, setAge] = useState(false);
+  console.log("age", age);
   useEffect(() => {
     dispatch(fetchActivities());
   }, [dispatch]);
+
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{}}>
       <Map />
       <div>
         <input
@@ -25,8 +28,57 @@ export default function Activities() {
         {/* <button type="submit" onClick={(e) => setInputText(e.target.value)}>
           <BiSearchAlt2 />
         </button> */}
+        <p>
+          <input
+            type="radio"
+            value="infant"
+            checked={age === "infant"}
+            onChange={(e) => {
+              setAge(e.target.value);
+            }}
+          />
+          Infant <br />
+          <input
+            type="radio"
+            value="pre-schooler"
+            checked={age === "pre-schooler"}
+            onChange={(e) => {
+              setAge(e.target.value);
+            }}
+          />{" "}
+          Pre-schooler <br />
+          <input
+            type="radio"
+            value="school-age"
+            checked={age === "school-age"}
+            onChange={(e) => {
+              setAge(e.target.value);
+            }}
+          />{" "}
+          School-age <br />
+          <input
+            type="radio"
+            value="all-ages"
+            checked={age === "all-ages"}
+            onChange={(e) => {
+              setAge(e.target.value);
+            }}
+          />{" "}
+          All-ages <br />
+        </p>
+        <button
+          onClick={() => {
+            setAge(false);
+            setInputText("");
+          }}
+        >
+          Clear filters
+        </button>
         {activities
           .filter((a) => a.title.toLowerCase().includes(getInputText))
+          .filter((a) => {
+            return age ? a.ageRange === age : a;
+          })
           .map((a) => (
             <Activity
               key={a.id}

@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
-import { newActivityCreated } from "../store/activity/action";
+import { newActivityCreated } from "../store/user/actions";
 
-const Form = () => {
+const Form = (props) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState(0);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const today = moment().format("YYYY-MM-DD");
@@ -21,6 +21,7 @@ const Form = () => {
   //   console.log(moment().format("YYYY-MM-DD"));
   //
   // const dispatch = useDispatch();
+
   const submit = (event) => {
     // to make sure that the form does not redirect (which is normal browser behavior)
     event.preventDefault();
@@ -50,6 +51,8 @@ const Form = () => {
     setAge("");
     setLatitude(0);
     setLongitude(0);
+
+    props.closeForm();
   };
 
   const uploadImage = async (e) => {
@@ -198,7 +201,9 @@ const Form = () => {
                 setAge(e.target.value);
               }}
             >
-              <option value=""> </option>
+              <option value="" selected>
+                {" "}
+              </option>
               <option value="infant">Infant</option>
               <option value="pre-schooler">Pre-schooler</option>
               <option value="school-age">School age</option>

@@ -28,10 +28,18 @@ export const userSlice = createSlice({
         (a) => a.id !== activityId
       );
     },
+    createNewActivity: (state, action) => {
+      state.profile.activities.push(action.payload);
+    },
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid, deleteActivity } =
-  userSlice.actions;
+export const {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  deleteActivity,
+  createNewActivity,
+} = userSlice.actions;
 
 export default userSlice.reducer;
