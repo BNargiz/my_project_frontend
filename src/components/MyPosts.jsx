@@ -2,6 +2,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdDateRange } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteOneActivity } from "../store/user/actions";
+import BasicModal from "./ModifyPost";
 
 const MyPosts = (props) => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const MyPosts = (props) => {
         <button onClick={() => dispatch(deleteOneActivity(props.id))}>
           Delete post
         </button>
-        <button>Modify post</button>
+        <BasicModal />
       </div>
     </div>
   );

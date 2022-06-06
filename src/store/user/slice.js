@@ -31,6 +31,9 @@ export const userSlice = createSlice({
     createNewActivity: (state, action) => {
       state.profile.activities.push(action.payload);
     },
+    activityUpdated: (state, action) => {
+      state.profile.activities = { ...action.payload };
+    },
   },
 });
 
@@ -40,6 +43,7 @@ export const {
   tokenStillValid,
   deleteActivity,
   createNewActivity,
+  activityUpdated,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -9,6 +9,7 @@ import {
   logOut,
   tokenStillValid,
   createNewActivity,
+  activityUpdated,
 } from "./slice";
 
 export const signUp = (name, email, password) => {
@@ -195,10 +196,63 @@ export const newActivityCreated =
       );
       console.log("new ativity", response.data);
       dispatch(createNewActivity(response.data));
-      // dispatch(
-      //   showMessageWithTimeout("success", true, "The artwork was posted", 1700)
-      // );
+      dispatch(
+        showMessageWithTimeout("success", true, "The activity was posted", 1900)
+      );
     } catch (e) {
       console.log(e.message);
     }
   };
+
+export const updateMyPost = (
+  title,
+  description,
+  location,
+  price,
+  imageUrl,
+  email,
+  phone,
+  date,
+  ageRange,
+  longitude,
+  latitude
+) => {
+  return async (dispatch, getState) => {
+    try {
+      const { token } = getState().user;
+      const { activities } = getState().user.profile;
+      dispatch(appLoading());
+
+      const response = await axios.patch(
+        `${apiUrl}/activities/${activities.id}`,
+        {
+          title,
+          description,
+          location,
+          price,
+          imageUrl,
+          email,
+          phone,
+          date,
+          ageRange,
+          longitude,
+          latitude,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+
+      dispatch(
+        showMessageWithTimeout("success", false, "update successfull", 3000)
+      );
+      dispatch(activityUpdated(response.data));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};
