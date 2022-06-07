@@ -20,7 +20,6 @@ const Form = (props) => {
 
   //   console.log(moment().format("YYYY-MM-DD"));
   //
-  // const dispatch = useDispatch();
 
   const submit = (event) => {
     // to make sure that the form does not redirect (which is normal browser behavior)

@@ -5,6 +5,11 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMyoneActivity } from "../store/user/selectors";
+import { useParams } from "react-router-dom";
+import { updateMyPost } from "../store/user/actions";
 
 const style = {
   position: "absolute",
@@ -27,12 +32,82 @@ const ageRanges = [
   { value: "all-ages", label: "all-ages" },
 ];
 
-export default function BasicModal() {
+export default function BasicModal(props) {
+  const dispatch = useDispatch();
+  //   const { id } = useParams();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [age, setAge] = React.useState("");
+  const activity = useSelector(selectMyoneActivity(props.id));
+  const [ageRange, setAgeRange] = React.useState(activity.ageRange);
   //   console.log(age);
+  const [title, setTitle] = React.useState(activity.title);
+  const [description, setDescription] = React.useState(activity.description);
+  const [location, setLocation] = React.useState(activity.location);
+  const [price, setPrice] = React.useState(activity.price);
+  const [imageUrl, setImage] = React.useState(activity.imageUrl);
+  const [email, setEmail] = React.useState(activity.email);
+  const [phone, setPhone] = React.useState(activity.phone);
+  const today = moment().format("YYYY-MM-DD");
+  const [date, setDate] = React.useState(activity.date);
+  const [longitude, setLongitude] = React.useState(activity.longitude);
+  const [latitude, setLatitude] = React.useState(activity.latitude);
+
+  console.log("act", activity);
+
+  const submit = (event) => {
+    // to make sure that the form does not redirect (which is normal browser behavior)
+    event.preventDefault();
+
+    dispatch(
+      updateMyPost(
+        props.id,
+        title,
+        description,
+        location,
+        price,
+        imageUrl,
+        email,
+        phone,
+        date,
+        ageRange,
+        longitude,
+        latitude
+      )
+    );
+    setTitle(activity.title);
+    setDescription(activity.description);
+    setLocation(activity.location);
+    setPrice(activity.price);
+    setImage(activity.imageUrl);
+    setEmail(activity.email);
+    setPhone(activity.phone);
+    setDate(activity.date);
+    setAgeRange(activity.ageRange);
+    setLatitude(activity.latitude);
+    setLongitude(activity.longitude);
+    handleClose(false);
+  };
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    //first parameter is always upload_preset, second is the name of the preset
+    data.append("upload_preset", "tnvu24xd");
+
+    //post request to Cloudinary, remember to change to your own link
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dgaoprtww/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+
+    const file = await res.json();
+    console.log("file", file); //check if you are getting the url back
+    setImage(file.url); //put the url in local state, next step you can send it to the backend
+  };
 
   return (
     <div>
@@ -48,13 +123,14 @@ export default function BasicModal() {
             Modify your Activity
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <form noValidate autoComplete="off">
+            <form noValidate autoComplete="off" onSubmit={submit}>
               <TextField
                 label="Title"
                 variant="outlined"
                 fullWidth
-                required
                 margin="dense"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -65,8 +141,9 @@ export default function BasicModal() {
                 multiline
                 rows={5}
                 fullWidth
-                required
                 margin="dense"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -75,8 +152,9 @@ export default function BasicModal() {
                 label="Location"
                 variant="outlined"
                 fullWidth
-                required
                 margin="dense"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -86,8 +164,9 @@ export default function BasicModal() {
                 type="number"
                 variant="outlined"
                 fullWidth
-                required
                 margin="dense"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -97,8 +176,8 @@ export default function BasicModal() {
                 type="file"
                 variant="outlined"
                 fullWidth
-                required
                 margin="dense"
+                onChange={uploadImage}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -108,8 +187,9 @@ export default function BasicModal() {
                 type="email"
                 variant="outlined"
                 fullWidth
-                required
                 margin="dense"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -118,8 +198,9 @@ export default function BasicModal() {
                 label="Phone"
                 variant="outlined"
                 fullWidth
-                required
                 margin="dense"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -129,8 +210,10 @@ export default function BasicModal() {
                 type="date"
                 variant="outlined"
                 fullWidth
-                required
                 margin="dense"
+                defaultValue={date}
+                InputProps={{ inputProps: { min: `${today}` } }}
+                onChange={(e) => setDate(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -139,13 +222,12 @@ export default function BasicModal() {
               <TextField
                 label="Age"
                 variant="outlined"
-                value={age}
+                value={ageRange}
                 onChange={(e) => {
-                  setAge(e.target.value);
+                  setAgeRange(e.target.value);
                 }}
                 select
                 fullWidth
-                required
                 margin="dense"
                 InputLabelProps={{
                   shrink: true,
@@ -163,8 +245,9 @@ export default function BasicModal() {
                 variant="outlined"
                 type="number"
                 fullWidth
-                required
                 margin="dense"
+                value={longitude}
+                onChange={(e) => setLongitude(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -174,13 +257,16 @@ export default function BasicModal() {
                 variant="outlined"
                 type="number"
                 fullWidth
-                required
                 margin="dense"
+                value={latitude}
+                onChange={(e) => setLatitude(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
-              <Button variant="contained">Modify</Button>
+              <Button type="submit" variant="contained">
+                Modify
+              </Button>
             </form>
           </Typography>
         </Box>

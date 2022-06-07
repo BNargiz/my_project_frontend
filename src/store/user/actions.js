@@ -205,6 +205,7 @@ export const newActivityCreated =
   };
 
 export const updateMyPost = (
+  id,
   title,
   description,
   location,
@@ -220,11 +221,11 @@ export const updateMyPost = (
   return async (dispatch, getState) => {
     try {
       const { token } = getState().user;
-      const { activities } = getState().user.profile;
+      // const { activities } = getState().user.profile;
       dispatch(appLoading());
 
       const response = await axios.patch(
-        `${apiUrl}/activities/${activities.id}`,
+        `${apiUrl}/activities/modify/${id}`,
         {
           title,
           description,
@@ -252,7 +253,7 @@ export const updateMyPost = (
       dispatch(activityUpdated(response.data));
       dispatch(appDoneLoading());
     } catch (e) {
-      console.log(e.message);
+      console.log(e);
     }
   };
 };

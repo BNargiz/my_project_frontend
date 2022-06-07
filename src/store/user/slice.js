@@ -32,7 +32,13 @@ export const userSlice = createSlice({
       state.profile.activities.push(action.payload);
     },
     activityUpdated: (state, action) => {
-      state.profile.activities = { ...action.payload };
+      // state.profile.activities = { ...action.payload };
+
+      state.profile.activities = state.profile.activities.map((a) =>
+        a.id === action.payload.id ? { ...action.payload } : a
+      );
+
+      // console.log("action", action.payload);
     },
   },
 });

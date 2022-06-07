@@ -3,6 +3,7 @@ import { MdDateRange } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteOneActivity } from "../store/user/actions";
 import BasicModal from "./ModifyPost";
+import Button from "@mui/material/Button";
 
 const MyPosts = (props) => {
   const dispatch = useDispatch();
@@ -29,10 +30,10 @@ const MyPosts = (props) => {
         {props.date}
       </p>
       <div style={{ display: "flex", gap: 80 }}>
-        <button onClick={() => dispatch(deleteOneActivity(props.id))}>
+        <Button onClick={() => dispatch(deleteOneActivity(props.id))}>
           Delete post
-        </button>
-        <BasicModal />
+        </Button>
+        <BasicModal id={props.id} />
       </div>
     </div>
   );
