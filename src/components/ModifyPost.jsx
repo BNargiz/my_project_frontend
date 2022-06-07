@@ -8,7 +8,6 @@ import MenuItem from "@mui/material/MenuItem";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMyoneActivity } from "../store/user/selectors";
-import { useParams } from "react-router-dom";
 import { updateMyPost } from "../store/user/actions";
 
 const style = {
@@ -54,6 +53,7 @@ export default function BasicModal(props) {
   const [latitude, setLatitude] = React.useState(activity.latitude);
 
   console.log("act", activity);
+  React.useEffect(() => {}, [activity]);
 
   const submit = (event) => {
     // to make sure that the form does not redirect (which is normal browser behavior)
@@ -75,17 +75,17 @@ export default function BasicModal(props) {
         latitude
       )
     );
-    setTitle(activity.title);
-    setDescription(activity.description);
-    setLocation(activity.location);
-    setPrice(activity.price);
-    setImage(activity.imageUrl);
-    setEmail(activity.email);
-    setPhone(activity.phone);
-    setDate(activity.date);
-    setAgeRange(activity.ageRange);
-    setLatitude(activity.latitude);
-    setLongitude(activity.longitude);
+    // setTitle(activity.title);
+    // setDescription(activity.description);
+    // setLocation(activity.location);
+    // setPrice(activity.price);
+    // setImage(activity.imageUrl);
+    // setEmail(activity.email);
+    // setPhone(activity.phone);
+    // setDate(activity.date);
+    // setAgeRange(activity.ageRange);
+    // setLatitude(activity.latitude);
+    // setLongitude(activity.longitude);
     handleClose(false);
   };
   const uploadImage = async (e) => {

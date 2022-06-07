@@ -2,9 +2,25 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { newActivityCreated } from "../store/user/actions";
+import Modal from "@mui/material/Modal";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
 
 const Form = (props) => {
+  const ageRanges = [
+    { value: "infant", label: "infant" },
+    { value: "pre-schooler", label: "pre-schooler" },
+    { value: "school-age", label: "school-age" },
+    { value: "all-ages", label: "all-ages" },
+  ];
   const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -20,6 +36,19 @@ const Form = (props) => {
 
   //   console.log(moment().format("YYYY-MM-DD"));
   //
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+    overflow: "scroll",
+    height: "100%",
+  };
 
   const submit = (event) => {
     // to make sure that the form does not redirect (which is normal browser behavior)
@@ -50,8 +79,9 @@ const Form = (props) => {
     setAge("");
     setLatitude(0);
     setLongitude(0);
+    handleClose(false);
 
-    props.closeForm();
+    // props.closeForm();
   };
 
   const uploadImage = async (e) => {
@@ -77,143 +107,185 @@ const Form = (props) => {
 
   return (
     <div>
-      {/* addform */}
-      <form onSubmit={submit}>
-        <h2>Add a new activity</h2>
-        <p>
-          <label>
-            Title:{" "}
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Description:{" "}
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Location:{" "}
-            <input
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Longitude:{" "}
-            <input
-              type="number"
-              value={longitude}
-              onChange={(e) => setLongitude(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Latitude:{" "}
-            <input
-              type="number"
-              value={latitude}
-              onChange={(e) => setLatitude(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Price:{" "}
-            <input
-              type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Image: <input type="file" onChange={uploadImage} />
-          </label>
-          <div>
-            <img
-              alt="img"
-              src={
-                image
-                  ? image
-                  : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-              }
-              style={{ maxWidth: 100 }}
-            />
-            {image ? (
-              <div style={{ fontSize: 20 }}>Succesfully uploaded!</div>
-            ) : (
-              ""
-            )}
-          </div>
-        </p>
-        <p>
-          <label>
-            Contact email:{" "}
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Contact number:{" "}
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Date:{" "}
-            <input
-              type="date"
-              value={date}
-              min={today}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Age:{" "}
-            <select
-              onChange={(e) => {
-                setAge(e.target.value);
-              }}
-            >
-              <option value="" selected>
-                {" "}
-              </option>
-              <option value="infant">Infant</option>
-              <option value="pre-schooler">Pre-schooler</option>
-              <option value="school-age">School age</option>
-              <option value="all-ages">All ages</option>
-            </select>
-          </label>
-        </p>
-        <p>
-          <button type="submit">Add this activity!</button>
-        </p>
-      </form>
+      <Button onClick={handleOpen}>Post an activity</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            New Activity
+          </Typography>
+          {/* addform */}
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <form onSubmit={submit} noValidate autoComplete="off">
+              <TextField
+                label="Title"
+                type="text"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              ></TextField>
+              <TextField
+                label="Description"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></TextField>
+              <TextField
+                label="Location"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              ></TextField>
+
+              <TextField
+                label="Longitude"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                type="number"
+                value={longitude}
+                onChange={(e) => setLongitude(e.target.value)}
+              ></TextField>
+
+              <TextField
+                label="Latitude"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                type="number"
+                value={latitude}
+                onChange={(e) => setLatitude(e.target.value)}
+              ></TextField>
+
+              <TextField
+                label="Price"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              ></TextField>
+
+              <TextField
+                label="Image"
+                type="file"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                onChange={uploadImage}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              >
+                {/* {" "}
+                <div>
+                  <img
+                    alt="img"
+                    src={
+                      image
+                        ? image
+                        : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+                    }
+                    style={{ maxWidth: 100 }}
+                  />
+                  {image ? (
+                    <div style={{ fontSize: 20 }}>Succesfully uploaded!</div>
+                  ) : (
+                    ""
+                  )}
+                </div> */}
+              </TextField>
+              <TextField
+                label="Email"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></TextField>
+              <TextField
+                label="Contact number"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              ></TextField>
+
+              <TextField
+                label="Date"
+                type="date"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                defaultValue={date}
+                InputProps={{ inputProps: { min: `${today}` } }}
+                onChange={(e) => setDate(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              ></TextField>
+
+              <TextField
+                label="Age"
+                variant="outlined"
+                value={age}
+                onChange={(e) => {
+                  setAge(e.target.value);
+                }}
+                select
+                fullWidth
+                margin="dense"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              >
+                {ageRanges.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              {/* 
+              <p>
+                <label>
+                  Age:{" "}
+                  <select
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                    }}
+                  >
+                    <option value="" selected>
+                      {" "}
+                    </option>
+                    <option value="infant">Infant</option>
+                    <option value="pre-schooler">Pre-schooler</option>
+                    <option value="school-age">School age</option>
+                    <option value="all-ages">All ages</option>
+                  </select>
+                </label>
+              </p> */}
+
+              <Button type="submit">Add this activity!</Button>
+            </form>
+          </Typography>
+        </Box>
+      </Modal>
     </div>
   );
 };
