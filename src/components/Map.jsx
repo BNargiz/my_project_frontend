@@ -12,9 +12,9 @@ const Map = () => {
         borderRadius: "10px",
         height: "50vw",
         width: "60vw",
-        maxWidth: "500px",
+        maxWidth: "300px",
         maxHeight: "350px",
-        padding: "0px 3.5%",
+        marginTop: 20,
       }}
       center={[52.36994, 4.906]}
       zoom={9}

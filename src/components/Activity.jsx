@@ -2,38 +2,57 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdDateRange } from "react-icons/md";
 import { GiAges } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 
 const Activity = (props) => {
   return (
-    <div
-      style={{
-        border: "1px solid black",
-        padding: 20,
-        margin: 20,
-        maxWidth: 700,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <h1>{props.title}</h1>
-      <img style={{ maxWidth: 200 }} src={props.imageUrl} alt="img" />
-      <p>
-        <HiOutlineLocationMarker />
-        {props.location}
-      </p>
-      <p>
-        <MdDateRange />
-        {props.date}
-      </p>
-      <p>
-        <GiAges />
-        {props.ageRange}
-      </p>
-      <Link to={`/activities/${props.id}`}>
-        <button>Read More</button>
-      </Link>
-    </div>
+    <Card sx={{ marginBottom: 7, maxWidth: 800 }}>
+      <CardActionArea
+        sx={{
+          display: "flex",
+          boxSizing: "border-box",
+          justifyContent: "flex-start",
+          gap: 3,
+        }}
+      >
+        <CardMedia
+          sx={{ maxWidth: 300 }}
+          component="img"
+          height="350"
+          image={props.imageUrl}
+          alt="img"
+        />
+        <CardContent sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <Typography gutterBottom variant="h4" component="div">
+            {props.title}
+          </Typography>
+
+          <Typography variant="body1" color="text.secondary">
+            <HiOutlineLocationMarker /> {props.location}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            <MdDateRange /> {"  "}
+            {props.date}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            <GiAges /> {"   "}
+            {props.ageRange}
+          </Typography>
+
+          <Link to={`/activities/${props.id}`}>
+            <CardActions>
+              <Button size="small" color="primary">
+                Read More
+              </Button>
+            </CardActions>
+          </Link>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 };
 export default Activity;

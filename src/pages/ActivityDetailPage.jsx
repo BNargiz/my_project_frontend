@@ -24,6 +24,8 @@ export default function ActivitiesDetailPage() {
         description={activity.description}
         imageUrl={activity.imageUrl}
         price={activity.price}
+        email={activity.email}
+        phone={activity.phone}
       />
     </div>
   ) : (
