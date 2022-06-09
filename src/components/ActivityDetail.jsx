@@ -49,7 +49,6 @@ const ActivityDetail = (props) => {
             maxWidth: 700,
             display: "flex",
             flexDirection: "column",
-
             boxSizing: "border-box",
             padding: 6,
             margin: 5,

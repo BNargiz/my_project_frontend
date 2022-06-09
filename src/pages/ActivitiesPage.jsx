@@ -11,6 +11,7 @@ import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import MyCalendar from "../components/Calendar";
 
 export default function Activities() {
   const dispatch = useDispatch();
@@ -97,6 +98,9 @@ export default function Activities() {
           >
             Clear filters
           </Button>
+
+          <MyCalendar />
+
           <Map />
         </Grid>
         <Grid item xs={8}>

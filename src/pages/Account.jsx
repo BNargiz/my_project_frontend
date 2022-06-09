@@ -5,7 +5,7 @@ import { selectToken, selectUserActivities } from "../store/user/selectors";
 import Loading from "../components/Loading";
 // import { useState } from "react";
 import Form from "../components/Form";
-// import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 
 export default function Account() {
   const token = useSelector(selectToken);
@@ -22,8 +22,15 @@ export default function Account() {
   // };
 
   return userActivities !== null ? (
-    <div>
+    <Grid
+      container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Form />
+
       {/* <Button onClick={() => setFormOpen(!formOpen)}>Post an activity</Button>
       {formOpen && <Form closeForm={closeForm} />} */}
       {userActivities.map((a) => (
@@ -36,7 +43,7 @@ export default function Account() {
           date={a.date}
         />
       ))}
-    </div>
+    </Grid>
   ) : (
     <p>
       <Loading />

@@ -132,6 +132,8 @@ const Form = (props) => {
               ></TextField>
               <TextField
                 label="Description"
+                multiline
+                rows={5}
                 variant="outlined"
                 fullWidth
                 margin="dense"
