@@ -17,7 +17,7 @@
 //     </MuiPickersUtilsProvider>
 //   );
 // }
-import React, { useState } from "react";
+import React from "react";
 import { Paper } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, Calendar } from "@material-ui/pickers";
@@ -43,7 +43,10 @@ function MyCalendar(props) {
     <MuiThemeProvider theme={theme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={idLocale}>
         <Paper style={{ overflow: "hidden" }}>
-          <Calendar date={props.selectedDate} onChange={handleDateChange} />
+          <Calendar
+            date={props.selectedDate || new Date()}
+            onChange={handleDateChange}
+          />
         </Paper>
       </MuiPickersUtilsProvider>
     </MuiThemeProvider>

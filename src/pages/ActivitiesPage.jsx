@@ -19,13 +19,21 @@ export default function Activities() {
   const activities = useSelector(selectActivities);
   const [getInputText, setInputText] = useState("");
   const [age, setAge] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(null);
   console.log("dateSelected", selectedDate);
   useEffect(() => {
     dispatch(fetchActivities());
   }, [dispatch]);
 
   const style = { p: 4 };
+  const filterActivities = activities
+    .filter((a) => a.title.toLowerCase().includes(getInputText))
+    .filter((a) => {
+      return age ? a.ageRange === age : true;
+    })
+    .filter((a) => {
+      return selectedDate ? moment(selectedDate).isSame(a.date, "day") : true;
+    });
 
   return (
     <Box>
@@ -100,6 +108,7 @@ export default function Activities() {
             onClick={() => {
               setAge(false);
               setInputText("");
+              setSelectedDate(null);
             }}
           >
             Clear filters
@@ -113,22 +122,8 @@ export default function Activities() {
           <Map />
         </Grid>
         <Grid item xs={8}>
-          {activities
-            .filter((a) => a.title.toLowerCase().includes(getInputText))
-            .filter((a) => {
-              return age ? a.ageRange === age : a;
-            })
-            .filter((a) => {
-              console.log(
-                moment(selectedDate).format("YYYY-MM-DD"),
-                "and ",
-                a.date
-              );
-              return selectedDate
-                ? moment(selectedDate).format("YYYY-MM-DD") === a.date
-                : a;
-            })
-            .map((a) => (
+          {filterActivities.length ? (
+            filterActivities.map((a) => (
               <Activity
                 key={a.id}
                 title={a.title}
@@ -138,7 +133,10 @@ export default function Activities() {
                 ageRange={a.ageRange}
                 id={a.id}
               />
-            ))}
+            ))
+          ) : (
+            <h2>There are ne activities</h2>
+          )}
         </Grid>
       </Grid>
     </Box>

@@ -3,6 +3,8 @@ import Grid from "@mui/material/Grid";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
+import Banner from "../components/Banner";
+
 export default function Home() {
   return (
     <Grid
@@ -15,6 +17,7 @@ export default function Home() {
         maxWidth: 2000,
       }}
     >
+      <Banner />
       <Grid item xs={12} sm={6} md={4}>
         <Card className="video-responsive" sx={{ margin: 2 }}>
           <CardMedia
