@@ -12,13 +12,15 @@ import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import MyCalendar from "../components/Calendar";
+import moment from "moment";
 
 export default function Activities() {
   const dispatch = useDispatch();
   const activities = useSelector(selectActivities);
   const [getInputText, setInputText] = useState("");
   const [age, setAge] = useState(false);
-  console.log("age", age);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  console.log("dateSelected", selectedDate);
   useEffect(() => {
     dispatch(fetchActivities());
   }, [dispatch]);
@@ -28,7 +30,11 @@ export default function Activities() {
   return (
     <Box>
       <Grid container sx={style} spacing={10}>
-        <Grid item xs={4}>
+        <Grid
+          item
+          xs={4}
+          sx={{ display: "flex", flexDirection: "column", p: 10, gap: 5 }}
+        >
           <TextField
             type="text"
             label="Search"
@@ -99,7 +105,10 @@ export default function Activities() {
             Clear filters
           </Button>
 
-          <MyCalendar />
+          <MyCalendar
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
 
           <Map />
         </Grid>
@@ -108,6 +117,16 @@ export default function Activities() {
             .filter((a) => a.title.toLowerCase().includes(getInputText))
             .filter((a) => {
               return age ? a.ageRange === age : a;
+            })
+            .filter((a) => {
+              console.log(
+                moment(selectedDate).format("YYYY-MM-DD"),
+                "and ",
+                a.date
+              );
+              return selectedDate
+                ? moment(selectedDate).format("YYYY-MM-DD") === a.date
+                : a;
             })
             .map((a) => (
               <Activity

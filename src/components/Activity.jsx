@@ -16,11 +16,15 @@ const Activity = (props) => {
           display: "flex",
           boxSizing: "border-box",
           justifyContent: "flex-start",
+          alignItems: "flex-start",
+          p: 0,
+          margin: 0,
+
           gap: 3,
         }}
       >
         <CardMedia
-          sx={{ maxWidth: 300 }}
+          sx={{ maxWidth: 400 }}
           component="img"
           height="350"
           image={props.imageUrl}
