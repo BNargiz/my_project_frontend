@@ -1,22 +1,3 @@
-// import React, { useState } from "react";
-
-// import DateFnsUtils from "@date-io/date-fns";
-// import { MuiPickersUtilsProvider, Calendar } from "@material-ui/pickers";
-
-// export default function MyCalendar() {
-//   const [selectedDate, setSelectedDate] = useState(new Date());
-
-//   const handleDateChange = (date) => {
-//     setSelectedDate(date);
-//     console.log("Date is: ", date);
-//   };
-
-//   return (
-//     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-//       <Calendar date={selectedDate} onChange={handleDateChange} />
-//     </MuiPickersUtilsProvider>
-//   );
-// }
 import React from "react";
 import { Paper } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";

@@ -22,11 +22,12 @@ export default function Account() {
   // };
 
   return userActivities !== null ? (
-    <Grid
-      container
-      sx={{
+    <div
+      style={{
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
       }}
     >
       <Form />
@@ -43,7 +44,7 @@ export default function Account() {
           date={a.date}
         />
       ))}
-    </Grid>
+    </div>
   ) : (
     <p>
       <Loading />

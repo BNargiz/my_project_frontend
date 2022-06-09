@@ -15,7 +15,7 @@ const MyPosts = (props) => {
   return (
     <Card
       sx={{
-        maxWidth: 700,
+        width: 700,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -40,12 +40,12 @@ const MyPosts = (props) => {
         </Typography>
       </Box>
       <CardMedia
-        sx={{ maxWidth: 300 }}
+        sx={{ width: "100%" }}
         component="img"
         height="350"
         image={props.imageUrl}
         alt="img"
-      ></CardMedia>
+      />
       <CardContent>
         <Box sx={{ display: "flex", gap: 10 }}>
           <Button onClick={() => dispatch(deleteOneActivity(props.id))}>

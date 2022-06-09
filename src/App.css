@@ -1,2 +1,39 @@
 .homepage-header {
+  color: white;
+  width: 100%;
+  height: 600px;
+  background-size: cover;
+  background-image: url("images/vitolda-klein-O0Pil03e6S8-unsplash.jpg");
+  background-position: center center;
+}
+
+.homepage-title {
+  font-size: 60px;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.banner-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+}
+.homepage-description {
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 50%;
+}
+
+.homepage-section-header {
+  font-size: 30px;
+  border-left: 7px solid red;
+  padding: 5px 10px;
+  margin-top: 30px;
 }

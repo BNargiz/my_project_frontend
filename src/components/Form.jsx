@@ -106,7 +106,7 @@ const Form = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <Button onClick={handleOpen}>Post an activity</Button>
       <Modal
         open={open}
@@ -122,6 +122,7 @@ const Form = (props) => {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <form onSubmit={submit} noValidate autoComplete="off">
               <TextField
+                required
                 label="Title"
                 type="text"
                 variant="outlined"
@@ -131,6 +132,7 @@ const Form = (props) => {
                 onChange={(e) => setTitle(e.target.value)}
               ></TextField>
               <TextField
+                required
                 label="Description"
                 multiline
                 rows={5}
@@ -142,6 +144,7 @@ const Form = (props) => {
                 onChange={(e) => setDescription(e.target.value)}
               ></TextField>
               <TextField
+                required
                 label="Location"
                 variant="outlined"
                 fullWidth
@@ -152,6 +155,7 @@ const Form = (props) => {
               ></TextField>
 
               <TextField
+                required
                 label="Longitude"
                 variant="outlined"
                 fullWidth
@@ -162,6 +166,7 @@ const Form = (props) => {
               ></TextField>
 
               <TextField
+                required
                 label="Latitude"
                 variant="outlined"
                 fullWidth
@@ -172,6 +177,7 @@ const Form = (props) => {
               ></TextField>
 
               <TextField
+                required
                 label="Price"
                 variant="outlined"
                 fullWidth
@@ -182,6 +188,7 @@ const Form = (props) => {
               ></TextField>
 
               <TextField
+                required
                 label="Image"
                 type="file"
                 variant="outlined"
@@ -211,6 +218,7 @@ const Form = (props) => {
                 </div> */}
               </TextField>
               <TextField
+                required
                 label="Email"
                 variant="outlined"
                 fullWidth
@@ -220,6 +228,7 @@ const Form = (props) => {
                 onChange={(e) => setEmail(e.target.value)}
               ></TextField>
               <TextField
+                required
                 label="Contact number"
                 variant="outlined"
                 fullWidth
@@ -230,6 +239,7 @@ const Form = (props) => {
               ></TextField>
 
               <TextField
+                required
                 label="Date"
                 type="date"
                 variant="outlined"
@@ -244,7 +254,8 @@ const Form = (props) => {
               ></TextField>
 
               <TextField
-                label="Age"
+                required
+                label="Age category"
                 variant="outlined"
                 value={age}
                 onChange={(e) => {
@@ -263,25 +274,6 @@ const Form = (props) => {
                   </MenuItem>
                 ))}
               </TextField>
-              {/* 
-              <p>
-                <label>
-                  Age:{" "}
-                  <select
-                    onChange={(e) => {
-                      setAge(e.target.value);
-                    }}
-                  >
-                    <option value="" selected>
-                      {" "}
-                    </option>
-                    <option value="infant">Infant</option>
-                    <option value="pre-schooler">Pre-schooler</option>
-                    <option value="school-age">School age</option>
-                    <option value="all-ages">All ages</option>
-                  </select>
-                </label>
-              </p> */}
 
               <Button type="submit">Add this activity!</Button>
             </form>

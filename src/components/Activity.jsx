@@ -10,27 +10,37 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 
 const Activity = (props) => {
   return (
-    <Card sx={{ marginBottom: 7, maxWidth: 800 }}>
+    <Card
+      sx={{
+        marginBottom: 7,
+        maxWidth: 800,
+      }}
+    >
       <CardActionArea
         sx={{
           display: "flex",
           boxSizing: "border-box",
           justifyContent: "flex-start",
           alignItems: "flex-start",
-          p: 0,
-          margin: 0,
-
           gap: 3,
         }}
       >
         <CardMedia
-          sx={{ maxWidth: 400 }}
+          sx={{ width: "60%", display: "flex", flex: "none" }}
           component="img"
           height="350"
           image={props.imageUrl}
           alt="img"
         />
-        <CardContent sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+        <CardContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+            width: "40%",
+            flex: "none",
+          }}
+        >
           <Typography gutterBottom variant="h4" component="div">
             {props.title}
           </Typography>

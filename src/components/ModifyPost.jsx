@@ -220,7 +220,7 @@ export default function BasicModal(props) {
               />
 
               <TextField
-                label="Age"
+                label="Age category"
                 variant="outlined"
                 value={ageRange}
                 onChange={(e) => {
