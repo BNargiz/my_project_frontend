@@ -2,7 +2,8 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdDateRange } from "react-icons/md";
 import { GiAges } from "react-icons/gi";
 
-import { GrContactInfo } from "react-icons/gr";
+import { AiOutlineMail } from "react-icons/ai";
+import { AiFillPhone } from "react-icons/ai";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -78,15 +79,12 @@ const ActivityDetail = (props) => {
           >
             Price: €{props.price}
           </Typography>
-          <Typography>
-            <GrContactInfo />
-            {"  "} Contact information
+          <Typography>{"  "} Contact</Typography>
+          <Typography variant="body2" color="text.secondary">
+            <AiOutlineMail /> {props.email}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Email: {props.email}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Phone Number: {props.phone}
+            <AiFillPhone /> {props.phone}
           </Typography>
         </Card>
       </Grid>

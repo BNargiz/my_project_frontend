@@ -96,9 +96,7 @@ export default function Home() {
           <CardContent>
             <Typography variant="body1" color="text.secondary">
               Ga mee op virtuele reis door de vaste tentoonstelling van het
-              Joods Historisch Museum. Debby Abram Uijenkruijer, rondleider
-              Joods Cultureel Kwartier, vertelt in deze video o.a. over de
-              joodse immigranten in de 17e eeuw en wat er in het JHM te zien is.
+              Joods Historisch Museum.
             </Typography>
           </CardContent>
         </Card>
@@ -129,7 +127,7 @@ export default function Home() {
           <CardContent>
             <Typography variant="body1" color="text.secondary">
               A collection of games (number 69 - 74) for kindergarten (or early
-              primary) teachers from WattsEnglish.
+              primary) teachers.
             </Typography>
           </CardContent>
         </Card>
@@ -145,8 +143,7 @@ export default function Home() {
           <CardContent>
             <Typography variant="body1" color="text.secondary">
               In this video, there are both fun and educational preschool
-              activities for your toddlers. Preschool learning activities and
-              learning activities for 3 year olds for watch the video.
+              activities for your toddlers.
             </Typography>
           </CardContent>
         </Card>
