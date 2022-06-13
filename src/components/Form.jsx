@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { newActivityCreated } from "../store/user/actions";
@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import axios from "axios";
 
 const Form = (props) => {
   const ageRanges = [
@@ -28,14 +29,31 @@ const Form = (props) => {
   const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const today = moment().format("YYYY-MM-DD");
   const [date, setDate] = useState(today);
   const [age, setAge] = useState("");
-  const [longitude, setLongitude] = useState(0);
-  const [latitude, setLatitude] = useState(0);
+  // const [latitude, setLatitude] = useState(0);
+  // const [longitude, setLongitude] = useState(0);
+  const [coordinates, setCoordinates] = useState([]);
 
   //   console.log(moment().format("YYYY-MM-DD"));
   //
+
+  const getCoordinates = async () => {
+    const response = await axios.get(
+      `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
+        address
+      )}&apiKey=eb6ac5328784421190b50a37700f0689`
+    );
+    console.log("response", response.data.features[0].geometry.coordinates);
+    setCoordinates(response.data.features[0].geometry.coordinates);
+  };
+
+  // useEffect(() => {
+  //   getCoordinates();
+  // }, [address]);
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -53,12 +71,13 @@ const Form = (props) => {
   const submit = (event) => {
     // to make sure that the form does not redirect (which is normal browser behavior)
     event.preventDefault();
+
     const newActivity = {
       title,
       description,
       location,
-      longitude,
-      latitude,
+      longitude: coordinates[0],
+      latitude: coordinates[1],
       price,
       image,
       email,
@@ -68,6 +87,7 @@ const Form = (props) => {
     };
 
     dispatch(newActivityCreated(newActivity));
+
     setTitle("");
     setDescription("");
     setLocation("");
@@ -77,8 +97,8 @@ const Form = (props) => {
     setPhone("");
     setDate(today);
     setAge("");
-    setLatitude(0);
-    setLongitude(0);
+    // setLatitude(0);
+    // setLongitude(0);
     handleClose(false);
 
     // props.closeForm();
@@ -153,8 +173,20 @@ const Form = (props) => {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               ></TextField>
-
               <TextField
+                required
+                label="Street Number City Country"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                type="text"
+                value={address}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                }}
+              />{" "}
+              <Button onClick={() => getCoordinates()}>Save</Button>
+              {/* <TextField
                 required
                 label="Longitude"
                 variant="outlined"
@@ -174,8 +206,7 @@ const Form = (props) => {
                 type="number"
                 value={latitude}
                 onChange={(e) => setLatitude(e.target.value)}
-              ></TextField>
-
+              ></TextField> */}
               <TextField
                 required
                 label="Price"
@@ -186,7 +217,6 @@ const Form = (props) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></TextField>
-
               <TextField
                 required
                 label="Image"
@@ -237,7 +267,6 @@ const Form = (props) => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               ></TextField>
-
               <TextField
                 required
                 label="Date"
@@ -252,7 +281,6 @@ const Form = (props) => {
                   shrink: true,
                 }}
               ></TextField>
-
               <TextField
                 required
                 label="Age category"
@@ -274,7 +302,6 @@ const Form = (props) => {
                   </MenuItem>
                 ))}
               </TextField>
-
               <Button type="submit">Add this activity!</Button>
             </form>
           </Typography>

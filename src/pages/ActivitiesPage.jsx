@@ -40,10 +40,18 @@ export default function Activities() {
       <Grid container sx={style} spacing={10}>
         <Grid
           item
-          xs={4}
-          sx={{ display: "flex", flexDirection: "column", p: 10, gap: 5 }}
+          xs={12}
+          sm={4}
+          md={4}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            p: 10,
+            gap: 5,
+          }}
         >
           <TextField
+            sx={{ backgroundColor: "white", boxShadow: "3px 3px 3px #ebf2f6" }}
             type="text"
             label="Search"
             value={getInputText}
@@ -121,7 +129,7 @@ export default function Activities() {
 
           <Map />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={8} md={8}>
           {filterActivities.length ? (
             filterActivities.map((a) => (
               <Activity
@@ -135,7 +143,7 @@ export default function Activities() {
               />
             ))
           ) : (
-            <h2>There are ne activities</h2>
+            <h2>There are no activities on this day</h2>
           )}
         </Grid>
       </Grid>

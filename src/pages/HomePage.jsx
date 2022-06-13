@@ -126,8 +126,8 @@ export default function Home() {
           />
           <CardContent>
             <Typography variant="body1" color="text.secondary">
-              A collection of games (number 69 - 74) for kindergarten (or early
-              primary) teachers.
+              A collection of games for kindergarten (or early primary)
+              teachers.
             </Typography>
           </CardContent>
         </Card>

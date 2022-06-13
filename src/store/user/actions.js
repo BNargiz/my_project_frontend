@@ -175,6 +175,7 @@ export const newActivityCreated =
       );
       const { token, profile } = getState().user;
       // dispatch(appLoading());
+
       const response = await axios.post(
         `${apiUrl}/activities/${profile.id}/post`,
         {

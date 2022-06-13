@@ -14,8 +14,22 @@ export default function Navigation() {
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={NavLink} to="/">
+    <Navbar
+      expand="lg"
+      style={{
+        backgroundColor: "#ffbf69",
+        padding: "0 10px 0 30px",
+        fontWeight: "bold",
+      }}
+    >
+      <Navbar.Brand
+        as={NavLink}
+        to="/"
+        style={{
+          color: "#d81159",
+          fontSize: 25,
+        }}
+      >
         Fun for kids in NL
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -59,7 +59,7 @@ const Activity = (props) => {
 
           <Link to={`/activities/${props.id}`}>
             <CardActions>
-              <Button size="small" color="primary">
+              <Button size="small" color="secondary">
                 Read More
               </Button>
             </CardActions>
