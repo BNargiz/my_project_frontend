@@ -15,7 +15,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 600,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -113,7 +113,13 @@ export default function BasicModal(props) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Modify post</Button>
+      <Button
+        variant="contained"
+        sx={{ backgroundColor: "#f0aa00" }}
+        onClick={handleOpen}
+      >
+        Edit activity
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -121,8 +127,13 @@ export default function BasicModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Modify your Activity
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            color={"#ff3076"}
+          >
+            Edit this activity
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <form noValidate autoComplete="off" onSubmit={submit}>
@@ -141,7 +152,7 @@ export default function BasicModal(props) {
                 label="Description"
                 variant="outlined"
                 multiline
-                rows={5}
+                rows={12}
                 fullWidth
                 margin="dense"
                 value={description}
@@ -265,8 +276,12 @@ export default function BasicModal(props) {
                   shrink: true,
                 }}
               /> */}
-              <Button type="submit" variant="contained">
-                Modify
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{ backgroundColor: "#f0aa00 " }}
+              >
+                Edit
               </Button>
             </form>
           </Typography>

@@ -22,28 +22,32 @@ export default function Account() {
   // };
 
   return userActivities !== null ? (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
-      <Form />
+    <div className="relative">
+      <div className="my-account"></div>
+      <div
+        className="absolute"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <Form />
 
-      {/* <Button onClick={() => setFormOpen(!formOpen)}>Post an activity</Button>
+        {/* <Button onClick={() => setFormOpen(!formOpen)}>Post an activity</Button>
       {formOpen && <Form closeForm={closeForm} />} */}
-      {userActivities.map((a) => (
-        <MyPosts
-          key={a.id}
-          id={a.id}
-          title={a.title}
-          imageUrl={a.imageUrl}
-          location={a.location}
-          date={a.date}
-        />
-      ))}
+        {userActivities.map((a) => (
+          <MyPosts
+            key={a.id}
+            id={a.id}
+            title={a.title}
+            imageUrl={a.imageUrl}
+            location={a.location}
+            date={a.date}
+          />
+        ))}
+      </div>
     </div>
   ) : (
     <p>

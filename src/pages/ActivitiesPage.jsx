@@ -36,117 +36,135 @@ export default function Activities() {
     });
 
   return (
-    <Box>
-      <Grid container sx={style} spacing={10}>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          md={4}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            p: 10,
-            gap: 5,
-          }}
-        >
-          <TextField
-            sx={{ backgroundColor: "white", boxShadow: "3px 3px 3px #ebf2f6" }}
-            type="text"
-            label="Search"
-            value={getInputText}
-            onChange={(e) => setInputText(e.target.value)}
-          ></TextField>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  defaultChecked
-                  value="infant"
-                  checked={age === "infant"}
-                  onChange={(e) => {
-                    setAge(e.target.value);
-                  }}
-                />
-              }
-              label="Infant"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  defaultChecked
-                  value="pre-schooler"
-                  checked={age === "pre-schooler"}
-                  onChange={(e) => {
-                    setAge(e.target.value);
-                  }}
-                />
-              }
-              label="Pre-schooler"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  defaultChecked
-                  value="school-age"
-                  checked={age === "school-age"}
-                  onChange={(e) => {
-                    setAge(e.target.value);
-                  }}
-                />
-              }
-              label="School-age"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  defaultChecked
-                  value="all-ages"
-                  checked={age === "all-ages"}
-                  onChange={(e) => {
-                    setAge(e.target.value);
-                  }}
-                />
-              }
-              label="All-ages"
-            />
-          </FormGroup>
-          <Button
-            variant="contained"
-            onClick={() => {
-              setAge(false);
-              setInputText("");
-              setSelectedDate(null);
+    <>
+      <div class="area">
+        <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <Box className="context">
+        <Grid container sx={style} spacing={10}>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            md={4}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              p: 10,
+              gap: 5,
             }}
           >
-            Clear filters
-          </Button>
-
-          <MyCalendar
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-          />
-
-          <Map />
-        </Grid>
-        <Grid item xs={12} sm={8} md={8}>
-          {filterActivities.length ? (
-            filterActivities.map((a) => (
-              <Activity
-                key={a.id}
-                title={a.title}
-                location={a.location}
-                date={a.date}
-                imageUrl={a.imageUrl}
-                ageRange={a.ageRange}
-                id={a.id}
+            <TextField
+              sx={{
+                backgroundColor: "white",
+              }}
+              type="text"
+              label="Search"
+              value={getInputText}
+              onChange={(e) => setInputText(e.target.value)}
+            ></TextField>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    defaultChecked
+                    value="infant"
+                    checked={age === "infant"}
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                    }}
+                  />
+                }
+                label="Infant"
               />
-            ))
-          ) : (
-            <h2>There are no activities on this day</h2>
-          )}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    defaultChecked
+                    value="pre-schooler"
+                    checked={age === "pre-schooler"}
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                    }}
+                  />
+                }
+                label="Pre-schooler"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    defaultChecked
+                    value="school-age"
+                    checked={age === "school-age"}
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                    }}
+                  />
+                }
+                label="School-age"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    defaultChecked
+                    value="all-ages"
+                    checked={age === "all-ages"}
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                    }}
+                  />
+                }
+                label="All-ages"
+              />
+            </FormGroup>
+            <Button
+              variant="contained"
+              onClick={() => {
+                setAge(false);
+                setInputText("");
+                setSelectedDate(null);
+              }}
+            >
+              Clear filters
+            </Button>
+
+            <MyCalendar
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+            />
+
+            <Map />
+          </Grid>
+          <Grid item xs={12} sm={8} md={8}>
+            {filterActivities.length ? (
+              filterActivities.map((a) => (
+                <Activity
+                  key={a.id}
+                  title={a.title}
+                  location={a.location}
+                  date={a.date}
+                  imageUrl={a.imageUrl}
+                  ageRange={a.ageRange}
+                  id={a.id}
+                />
+              ))
+            ) : (
+              <h2>There are no activities on this day</h2>
+            )}
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </>
   );
 }

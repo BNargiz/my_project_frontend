@@ -23,9 +23,15 @@ const MyPosts = (props) => {
         padding: 6,
         margin: 5,
         textAlign: "center",
+        backgroundColor: "#f7f7f7",
       }}
     >
-      <Typography gutterBottom variant="h3" component="div">
+      <Typography
+        gutterBottom
+        variant="h3"
+        component="div"
+        sx={{ color: "#56225e" }}
+      >
         {props.title}
       </Typography>
       <Box sx={{ display: "flex", gap: 2, marginBottom: "20px" }}>
@@ -49,10 +55,11 @@ const MyPosts = (props) => {
       <CardContent>
         <Box sx={{ display: "flex", gap: 10, marginTop: "25px" }}>
           <Button
-            variant=""
+            sx={{ backgroundColor: "#ff3076" }}
+            variant="contained"
             onClick={() => dispatch(deleteOneActivity(props.id))}
           >
-            Delete post
+            Delete activity
           </Button>
           <BasicModal id={props.id} />
         </Box>

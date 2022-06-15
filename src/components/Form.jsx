@@ -39,7 +39,7 @@ const Form = (props) => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: 600,
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
@@ -78,8 +78,6 @@ const Form = (props) => {
     setAge("");
     // setAddress("");
     handleClose(false);
-
-    // props.closeForm();
   };
 
   const uploadImage = async (e) => {
@@ -105,7 +103,18 @@ const Form = (props) => {
 
   return (
     <div style={{ width: "100%" }}>
-      <Button onClick={handleOpen}>Post an activity</Button>
+      <Button
+        variant="contained"
+        onClick={handleOpen}
+        sx={{
+          backgroundColor: "#ff3076",
+          width: 200,
+          height: 60,
+          fontWeight: "bold",
+        }}
+      >
+        Post activity
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -113,7 +122,12 @@ const Form = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            color={"#ff3076"}
+          >
             New Activity
           </Typography>
           {/* addform */}
@@ -133,7 +147,7 @@ const Form = (props) => {
                 required
                 label="Description"
                 multiline
-                rows={5}
+                rows={8}
                 variant="outlined"
                 fullWidth
                 margin="dense"
@@ -151,18 +165,7 @@ const Form = (props) => {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               ></TextField>
-              {/* <TextField
-                required
-                label="Street Number City Country"
-                variant="outlined"
-                fullWidth
-                margin="dense"
-                type="text"
-                value={address}
-                onChange={(e) => {
-                  setAddress(e.target.value);
-                }}
-              />{" "} */}
+
               <TextField
                 required
                 label="Price"
@@ -258,7 +261,13 @@ const Form = (props) => {
                   </MenuItem>
                 ))}
               </TextField>
-              <Button type="submit">Add this activity!</Button>
+              <Button
+                sx={{ backgroundColor: "#f0aa00" }}
+                variant="contained"
+                type="submit"
+              >
+                Add activity!
+              </Button>
             </form>
           </Typography>
         </Box>
