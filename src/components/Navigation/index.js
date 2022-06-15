@@ -17,17 +17,19 @@ export default function Navigation() {
     <Navbar
       expand="lg"
       style={{
-        backgroundColor: "#ffbf69",
-        padding: "0 10px 0 30px",
-        fontWeight: "bold",
+        borderBottom: "4px solid #ff3076 ",
+        padding: "20px 40px",
+
+        textTransform: "uppercase",
       }}
     >
       <Navbar.Brand
         as={NavLink}
         to="/"
         style={{
-          color: "#d81159",
+          color: "#ff3076",
           fontSize: 25,
+          fontWeight: "bold",
         }}
       >
         Fun for kids in NL

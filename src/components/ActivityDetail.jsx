@@ -20,16 +20,19 @@ const ActivityDetail = (props) => {
             width: 700,
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
             boxSizing: "border-box",
-            padding: 6,
+            padding: "40px 0",
             margin: 5,
             textAlign: "justify",
-
             color: "#022b3a",
           }}
         >
-          <Typography gutterBottom variant="h3" component="div">
+          <Typography
+            gutterBottom
+            variant="h3"
+            component="div"
+            sx={{ color: "#56225e " }}
+          >
             {props.title}
           </Typography>
           <CardMedia
@@ -55,9 +58,9 @@ const ActivityDetail = (props) => {
             boxSizing: "border-box",
             padding: 6,
             margin: 5,
-            textAlign: "justify",
+            textAlign: "flex start",
             gap: 7,
-            color: "#022b3a",
+
             backgroundColor: "#f7f7f7;",
           }}
         >
@@ -67,6 +70,7 @@ const ActivityDetail = (props) => {
               borderLeft: "3px solid #d81159",
               fontSize: 25,
               paddingLeft: 1,
+              color: "#56225e",
             }}
           >
             {"  "} {props.title}
@@ -93,7 +97,7 @@ const ActivityDetail = (props) => {
           >
             Price: €{props.price}
           </Typography>
-          <Typography>{"  "} Contact</Typography>
+          <Typography sx={{ color: "#f0aa00" }}>{"  "} Contact</Typography>
           <Typography variant="body2" color="text.secondary">
             <AiOutlineMail /> {props.email}
           </Typography>

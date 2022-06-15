@@ -22,13 +22,13 @@ const MyPosts = (props) => {
         boxSizing: "border-box",
         padding: 6,
         margin: 5,
-        textAlign: "justify",
+        textAlign: "center",
       }}
     >
       <Typography gutterBottom variant="h3" component="div">
         {props.title}
       </Typography>
-      <Box sx={{ display: "flex", gap: 2 }}>
+      <Box sx={{ display: "flex", gap: 2, marginBottom: "20px" }}>
         <Typography variant="body1" color="text.secondary">
           {" "}
           <HiOutlineLocationMarker /> {"  "}
@@ -47,8 +47,11 @@ const MyPosts = (props) => {
         alt="img"
       />
       <CardContent>
-        <Box sx={{ display: "flex", gap: 10 }}>
-          <Button onClick={() => dispatch(deleteOneActivity(props.id))}>
+        <Box sx={{ display: "flex", gap: 10, marginTop: "25px" }}>
+          <Button
+            variant=""
+            onClick={() => dispatch(deleteOneActivity(props.id))}
+          >
             Delete post
           </Button>
           <BasicModal id={props.id} />

@@ -41,27 +41,30 @@ const Activity = (props) => {
             flex: "none",
           }}
         >
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography
+            gutterBottom
+            variant="h4"
+            component="div"
+            sx={{ color: "#56225e " }}
+          >
             {props.title}
           </Typography>
 
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant="body1">
             <HiOutlineLocationMarker /> {props.location}
           </Typography>
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant="body1">
             <MdDateRange /> {"  "}
             {props.date}
           </Typography>
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant="body1">
             <GiAges /> {"   "}
             {props.ageRange}
           </Typography>
 
           <Link to={`/activities/${props.id}`}>
             <CardActions>
-              <Button size="small" color="secondary">
-                Read More
-              </Button>
+              <Button size="small">Read More </Button>
             </CardActions>
           </Link>
         </CardContent>

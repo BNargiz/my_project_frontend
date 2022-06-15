@@ -39,3 +39,29 @@
   margin-top: 30px;
   /* background-color: #b9d1e9; */
 }
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link:hover,
+.navbar-light .navbar-nav .nav-item .nav-link.active {
+  color: #f0aa00;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link {
+  color: black;
+}
+
+.MuiCardContent-root .MuiButtonBase-root {
+  font-weight: bold;
+  border-bottom: 1px solid #ff3076;
+}
+
+.MuiCardContent-root a {
+  text-decoration: none;
+  color: #56225e;
+}
+
+.MuiCardContent-root a:hover {
+  color: #ff3076;
+}
