@@ -25,6 +25,7 @@ const ActivityDetail = (props) => {
             margin: 5,
             textAlign: "justify",
             color: "#022b3a",
+            backgroundColor: "#f7f7f7",
           }}
         >
           <Typography
@@ -60,8 +61,7 @@ const ActivityDetail = (props) => {
             margin: 5,
             textAlign: "flex start",
             gap: 7,
-
-            backgroundColor: "#f7f7f7;",
+            backgroundColor: "#f7f7f7",
           }}
         >
           <Typography

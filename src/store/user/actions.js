@@ -149,8 +149,7 @@ export const newActivityCreated =
     title,
     description,
     location,
-    longitude,
-    latitude,
+    // address,
     price,
     image,
     email,
@@ -160,18 +159,29 @@ export const newActivityCreated =
   }) =>
   async (dispatch, getState) => {
     try {
+      const coordinatesResponse = await axios.get(
+        `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
+          location
+        )}&apiKey=eb6ac5328784421190b50a37700f0689`
+      );
+
+      const latitude =
+        coordinatesResponse.data.features[0].geometry.coordinates[1];
+      const longitude =
+        coordinatesResponse.data.features[0].geometry.coordinates[0];
+
       console.log(
-        title,
-        description,
-        location,
+        // title,
+        // description,
+        // location,
         longitude,
-        latitude,
-        price,
-        image,
-        email,
-        phone,
-        date,
-        age
+        latitude
+        // price,
+        // image,
+        // email,
+        // phone,
+        // date,
+        // age
       );
       const { token, profile } = getState().user;
       // dispatch(appLoading());
@@ -215,15 +225,25 @@ export const updateMyPost = (
   email,
   phone,
   date,
-  ageRange,
-  longitude,
-  latitude
+  ageRange
 ) => {
   return async (dispatch, getState) => {
+    const coordinatesResponse = await axios.get(
+      `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
+        location
+      )}&apiKey=eb6ac5328784421190b50a37700f0689`
+    );
+
+    const latitude =
+      coordinatesResponse.data.features[0].geometry.coordinates[1];
+    const longitude =
+      coordinatesResponse.data.features[0].geometry.coordinates[0];
+
+    console.log(longitude, latitude);
     try {
       const { token } = getState().user;
       // const { activities } = getState().user.profile;
-      dispatch(appLoading());
+      // dispatch(appLoading());
 
       const response = await axios.patch(
         `${apiUrl}/activities/modify/${id}`,

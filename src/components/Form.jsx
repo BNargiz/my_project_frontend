@@ -29,30 +29,10 @@ const Form = (props) => {
   const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
+  // const [address, setAddress] = useState("");
   const today = moment().format("YYYY-MM-DD");
   const [date, setDate] = useState(today);
   const [age, setAge] = useState("");
-  // const [latitude, setLatitude] = useState(0);
-  // const [longitude, setLongitude] = useState(0);
-  const [coordinates, setCoordinates] = useState([]);
-
-  //   console.log(moment().format("YYYY-MM-DD"));
-  //
-
-  const getCoordinates = async () => {
-    const response = await axios.get(
-      `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
-        address
-      )}&apiKey=eb6ac5328784421190b50a37700f0689`
-    );
-    console.log("response", response.data.features[0].geometry.coordinates);
-    setCoordinates(response.data.features[0].geometry.coordinates);
-  };
-
-  // useEffect(() => {
-  //   getCoordinates();
-  // }, [address]);
 
   const style = {
     position: "absolute",
@@ -76,8 +56,7 @@ const Form = (props) => {
       title,
       description,
       location,
-      longitude: coordinates[0],
-      latitude: coordinates[1],
+      // address,
       price,
       image,
       email,
@@ -97,8 +76,7 @@ const Form = (props) => {
     setPhone("");
     setDate(today);
     setAge("");
-    // setLatitude(0);
-    // setLongitude(0);
+    // setAddress("");
     handleClose(false);
 
     // props.closeForm();
@@ -165,7 +143,7 @@ const Form = (props) => {
               ></TextField>
               <TextField
                 required
-                label="Location"
+                label="Address (Street/City)"
                 variant="outlined"
                 fullWidth
                 margin="dense"
@@ -173,7 +151,7 @@ const Form = (props) => {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               ></TextField>
-              <TextField
+              {/* <TextField
                 required
                 label="Street Number City Country"
                 variant="outlined"
@@ -184,29 +162,7 @@ const Form = (props) => {
                 onChange={(e) => {
                   setAddress(e.target.value);
                 }}
-              />{" "}
-              <Button onClick={() => getCoordinates()}>Save</Button>
-              {/* <TextField
-                required
-                label="Longitude"
-                variant="outlined"
-                fullWidth
-                margin="dense"
-                type="number"
-                value={longitude}
-                onChange={(e) => setLongitude(e.target.value)}
-              ></TextField>
-
-              <TextField
-                required
-                label="Latitude"
-                variant="outlined"
-                fullWidth
-                margin="dense"
-                type="number"
-                value={latitude}
-                onChange={(e) => setLatitude(e.target.value)}
-              ></TextField> */}
+              />{" "} */}
               <TextField
                 required
                 label="Price"

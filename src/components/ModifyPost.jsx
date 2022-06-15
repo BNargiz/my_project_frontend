@@ -49,10 +49,11 @@ export default function BasicModal(props) {
   const [phone, setPhone] = React.useState(activity.phone);
   const today = moment().format("YYYY-MM-DD");
   const [date, setDate] = React.useState(activity.date);
-  const [longitude, setLongitude] = React.useState(activity.longitude);
-  const [latitude, setLatitude] = React.useState(activity.latitude);
+  // const [longitude, setLongitude] = React.useState(activity.longitude);
+  // const [latitude, setLatitude] = React.useState(activity.latitude);
+  // const [address, setAddress] = React.useState("");
 
-  console.log("act", activity);
+  // console.log("act", activity);
   React.useEffect(() => {}, [activity]);
 
   const submit = (event) => {
@@ -70,9 +71,10 @@ export default function BasicModal(props) {
         email,
         phone,
         date,
-        ageRange,
-        longitude,
-        latitude
+        ageRange
+        // longitude,
+        // latitude
+        // address
       )
     );
     // setTitle(activity.title);
@@ -149,7 +151,7 @@ export default function BasicModal(props) {
                 }}
               />
               <TextField
-                label="Location"
+                label="Address (Street/City)"
                 variant="outlined"
                 fullWidth
                 margin="dense"
@@ -159,6 +161,7 @@ export default function BasicModal(props) {
                   shrink: true,
                 }}
               />
+
               <TextField
                 label="Price"
                 type="number"
@@ -218,7 +221,6 @@ export default function BasicModal(props) {
                   shrink: true,
                 }}
               />
-
               <TextField
                 label="Age category"
                 variant="outlined"
@@ -239,8 +241,7 @@ export default function BasicModal(props) {
                   </MenuItem>
                 ))}
               </TextField>
-
-              <TextField
+              {/* <TextField
                 label="Longitude"
                 variant="outlined"
                 type="number"
@@ -263,7 +264,7 @@ export default function BasicModal(props) {
                 InputLabelProps={{
                   shrink: true,
                 }}
-              />
+              /> */}
               <Button type="submit" variant="contained">
                 Modify
               </Button>
