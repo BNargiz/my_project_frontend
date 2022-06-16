@@ -13,6 +13,8 @@ export default function ActivitiesDetailPage() {
   useEffect(() => {
     dispatch(fetchActivityById(id));
   }, [dispatch, id]);
+
+  // console.log(activity.reviews);
   return activity !== null ? (
     <div>
       <ActivityDetail
@@ -26,6 +28,7 @@ export default function ActivitiesDetailPage() {
         price={activity.price}
         email={activity.email}
         phone={activity.phone}
+        review={activity.reviews}
       />
     </div>
   ) : (

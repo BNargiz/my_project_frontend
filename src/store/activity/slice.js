@@ -20,9 +20,17 @@ const activitySlice = createSlice({
       state.activitydetail = action.payload;
       state.loading = false;
     },
+    addReviews: (state, action) => {
+      state.activitydetail.reviews.push(action.payload);
+      state.loading = false;
+    },
   },
 });
 
-export const { activitiesFullyFetched, startLoading, activityFetched } =
-  activitySlice.actions;
+export const {
+  activitiesFullyFetched,
+  startLoading,
+  activityFetched,
+  addReviews,
+} = activitySlice.actions;
 export default activitySlice.reducer;

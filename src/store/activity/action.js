@@ -1,6 +1,11 @@
 import axios from "axios";
 import { apiUrl } from "../../config/constants";
-import { startLoading, activitiesFullyFetched, activityFetched } from "./slice";
+import {
+  startLoading,
+  activitiesFullyFetched,
+  activityFetched,
+  addReviews,
+} from "./slice";
 
 export const fetchActivities = () => async (dispatch, getState) => {
   try {
@@ -29,3 +34,29 @@ export const fetchActivityById = (id) => async (dispatch, getState) => {
     console.log(e.message);
   }
 };
+
+export const createReviews =
+  ({ name, text, date }) =>
+  async (dispatch, getState) => {
+    try {
+      const { activitydetail } = getState().activity;
+      const { token } = getState().user;
+      dispatch(startLoading());
+      const response = await axios.post(
+        `${apiUrl}/reviews/${activitydetail.id}`,
+        {
+          name,
+          text,
+          date,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      // console.log("e", response.data);
+
+      dispatch(addReviews(response.data));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };

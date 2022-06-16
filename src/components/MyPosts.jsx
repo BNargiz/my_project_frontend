@@ -57,7 +57,10 @@ const MyPosts = (props) => {
           <Button
             sx={{ backgroundColor: "#ff3076" }}
             variant="contained"
-            onClick={() => dispatch(deleteOneActivity(props.id))}
+            onClick={() => {
+              let confirmed = window.confirm("Do you want to delete");
+              if (confirmed) dispatch(deleteOneActivity(props.id));
+            }}
           >
             Delete activity
           </Button>

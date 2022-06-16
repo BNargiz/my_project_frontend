@@ -183,7 +183,7 @@
 
 @keyframes animate {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(-200px) rotate(0deg);
     opacity: 1;
     border-radius: 0;
   }
@@ -207,6 +207,7 @@
 
 .relative {
   position: relative;
+  padding: 40px;
 }
 
 .absolute {

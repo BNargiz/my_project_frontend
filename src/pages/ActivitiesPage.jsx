@@ -63,6 +63,12 @@ export default function Activities() {
               flexDirection: "column",
               p: 10,
               gap: 5,
+              height: "100%",
+              maxHeight: "1500px",
+
+              // position: "-webkit-sticky",
+              // position: "sticky",
+              // top: 0,
             }}
           >
             <TextField
@@ -146,7 +152,13 @@ export default function Activities() {
 
             <Map />
           </Grid>
-          <Grid item xs={12} sm={8} md={8}>
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            md={8}
+            sx={{ overflow: "scroll", maxHeight: "1200px" }}
+          >
             {filterActivities.length ? (
               filterActivities.map((a) => (
                 <Activity

@@ -24,6 +24,7 @@ export default function Account() {
   return userActivities !== null ? (
     <div className="relative">
       <div className="my-account"></div>
+
       <div
         className="absolute"
         style={{

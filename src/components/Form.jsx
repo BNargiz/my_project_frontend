@@ -102,7 +102,14 @@ const Form = (props) => {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "row",
+      }}
+    >
       <Button
         variant="contained"
         onClick={handleOpen}

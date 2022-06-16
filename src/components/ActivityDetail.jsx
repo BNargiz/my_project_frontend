@@ -10,6 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
 import Grid from "@mui/material/Grid";
+import Reviews from "./Reviews";
 
 const ActivityDetail = (props) => {
   return (
@@ -23,7 +24,6 @@ const ActivityDetail = (props) => {
             boxSizing: "border-box",
             padding: "40px 0",
             margin: 5,
-            textAlign: "justify",
             color: "#022b3a",
             backgroundColor: "#f7f7f7",
           }}
@@ -32,7 +32,7 @@ const ActivityDetail = (props) => {
             gutterBottom
             variant="h3"
             component="div"
-            sx={{ color: "#56225e " }}
+            sx={{ color: "#56225e ", paddingLeft: 2 }}
           >
             {props.title}
           </Typography>
@@ -44,7 +44,11 @@ const ActivityDetail = (props) => {
             alt="img"
           ></CardMedia>
           <CardContent>
-            <Typography variant="body1" color="text.secondary">
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ textAlign: "justify" }}
+            >
               {props.description}
             </Typography>
           </CardContent>
@@ -60,7 +64,7 @@ const ActivityDetail = (props) => {
             padding: 6,
             margin: 5,
             textAlign: "flex start",
-            gap: 7,
+            gap: 5,
             backgroundColor: "#f7f7f7",
           }}
         >
@@ -99,11 +103,13 @@ const ActivityDetail = (props) => {
           </Typography>
           <Typography sx={{ color: "#f0aa00" }}>{"  "} Contact</Typography>
           <Typography variant="body2" color="text.secondary">
-            <AiOutlineMail /> {props.email}
+            <AiOutlineMail />{" "}
+            <a href={`mailto:${props.email}`}>{props.email}</a>
           </Typography>
           <Typography variant="body2" color="text.secondary">
             <AiFillPhone /> {props.phone}
           </Typography>
+          <Reviews reviews={props.review} />
         </Card>
       </Grid>
     </Grid>
