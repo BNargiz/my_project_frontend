@@ -5,7 +5,6 @@ import { selectToken, selectUserActivities } from "../store/user/selectors";
 import Loading from "../components/Loading";
 // import { useState } from "react";
 import Form from "../components/Form";
-import Grid from "@mui/material/Grid";
 
 export default function Account() {
   const token = useSelector(selectToken);
@@ -35,9 +34,6 @@ export default function Account() {
         }}
       >
         <Form />
-
-        {/* <Button onClick={() => setFormOpen(!formOpen)}>Post an activity</Button>
-      {formOpen && <Form closeForm={closeForm} />} */}
         {userActivities.map((a) => (
           <MyPosts
             key={a.id}

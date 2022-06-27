@@ -24,6 +24,8 @@ const MyPosts = (props) => {
         margin: 5,
         textAlign: "center",
         backgroundColor: "#f7f7f7",
+        // overflow: "scroll",
+        // maxHeight: "1200px",
       }}
     >
       <Typography
@@ -58,7 +60,9 @@ const MyPosts = (props) => {
             sx={{ backgroundColor: "#ff3076" }}
             variant="contained"
             onClick={() => {
-              let confirmed = window.confirm("Do you want to delete");
+              let confirmed = window.confirm(
+                "Are you sure you want to delete this activity"
+              );
               if (confirmed) dispatch(deleteOneActivity(props.id));
             }}
           >

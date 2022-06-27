@@ -33,7 +33,7 @@ export const userSlice = createSlice({
     },
     activityUpdated: (state, action) => {
       // state.profile.activities = { ...action.payload };
-
+      // is action.paylod => an activity
       state.profile.activities = state.profile.activities.map((a) =>
         a.id === action.payload.id ? { ...action.payload } : a
       );
