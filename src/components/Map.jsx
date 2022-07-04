@@ -11,7 +11,7 @@ const Map = () => {
         border: "2px solid",
         borderRadius: "10px",
         height: "50vw",
-        width: "60vw",
+        // width: "60vw",
         maxWidth: "325px",
         maxHeight: "350px",
         marginTop: 20,
